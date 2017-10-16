@@ -1,0 +1,47 @@
+'use strict';
+
+module.exports = function (Chart) {
+
+	var defaultConfig = {
+		hover: {
+			mode: 'single'
+		},
+
+		scales: {
+			xAxes: [{
+				type: 'linear', // scatter should not use a category axis
+				position: 'bottom',
+				id: 'x-axis-1' // need an ID so datasets can reference the scale
+			}],
+			yAxes: [{
+				type: 'linear',
+				position: 'left',
+				id: 'y-axis-1'
+			}]
+		},
+
+		tooltips: {
+			callbacks: {
+				title: function title() {
+					// Title doesn't make sense for scatter since we format the data as a point
+					return '';
+				},
+				label: function label(tooltipItem) {
+					return '(' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
+				}
+			}
+		}
+	};
+
+	// Register the default config for this type
+	Chart.defaults.scatter = defaultConfig;
+
+	// Scatter charts use line controllers
+	Chart.controllers.scatter = Chart.controllers.line;
+
+	Chart.Scatter = function (context, config) {
+		config.type = 'scatter';
+		return new Chart(context, config);
+	};
+};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkNoYXJ0LlNjYXR0ZXIuanMiXSwibmFtZXMiOlsibW9kdWxlIiwiZXhwb3J0cyIsIkNoYXJ0IiwiZGVmYXVsdENvbmZpZyIsImhvdmVyIiwibW9kZSIsInNjYWxlcyIsInhBeGVzIiwidHlwZSIsInBvc2l0aW9uIiwiaWQiLCJ5QXhlcyIsInRvb2x0aXBzIiwiY2FsbGJhY2tzIiwidGl0bGUiLCJsYWJlbCIsInRvb2x0aXBJdGVtIiwieExhYmVsIiwieUxhYmVsIiwiZGVmYXVsdHMiLCJzY2F0dGVyIiwiY29udHJvbGxlcnMiLCJsaW5lIiwiU2NhdHRlciIsImNvbnRleHQiLCJjb25maWciXSwibWFwcGluZ3MiOiJBQUFBOztBQUVBQSxPQUFPQyxPQUFQLEdBQWlCLFVBQVNDLEtBQVQsRUFBZ0I7O0FBRWhDLEtBQUlDLGdCQUFnQjtBQUNuQkMsU0FBTztBQUNOQyxTQUFNO0FBREEsR0FEWTs7QUFLbkJDLFVBQVE7QUFDUEMsVUFBTyxDQUFDO0FBQ1BDLFVBQU0sUUFEQyxFQUNTO0FBQ2hCQyxjQUFVLFFBRkg7QUFHUEMsUUFBSSxVQUhHLENBR1E7QUFIUixJQUFELENBREE7QUFNUEMsVUFBTyxDQUFDO0FBQ1BILFVBQU0sUUFEQztBQUVQQyxjQUFVLE1BRkg7QUFHUEMsUUFBSTtBQUhHLElBQUQ7QUFOQSxHQUxXOztBQWtCbkJFLFlBQVU7QUFDVEMsY0FBVztBQUNWQyxXQUFPLGlCQUFXO0FBQ2pCO0FBQ0EsWUFBTyxFQUFQO0FBQ0EsS0FKUztBQUtWQyxXQUFPLGVBQVNDLFdBQVQsRUFBc0I7QUFDNUIsWUFBTyxNQUFNQSxZQUFZQyxNQUFsQixHQUEyQixJQUEzQixHQUFrQ0QsWUFBWUUsTUFBOUMsR0FBdUQsR0FBOUQ7QUFDQTtBQVBTO0FBREY7QUFsQlMsRUFBcEI7O0FBK0JBO0FBQ0FoQixPQUFNaUIsUUFBTixDQUFlQyxPQUFmLEdBQXlCakIsYUFBekI7O0FBRUE7QUFDQUQsT0FBTW1CLFdBQU4sQ0FBa0JELE9BQWxCLEdBQTRCbEIsTUFBTW1CLFdBQU4sQ0FBa0JDLElBQTlDOztBQUVBcEIsT0FBTXFCLE9BQU4sR0FBZ0IsVUFBU0MsT0FBVCxFQUFrQkMsTUFBbEIsRUFBMEI7QUFDekNBLFNBQU9qQixJQUFQLEdBQWMsU0FBZDtBQUNBLFNBQU8sSUFBSU4sS0FBSixDQUFVc0IsT0FBVixFQUFtQkMsTUFBbkIsQ0FBUDtBQUNBLEVBSEQ7QUFLQSxDQTVDRCIsImZpbGUiOiJDaGFydC5TY2F0dGVyLmpzIiwic291cmNlc0NvbnRlbnQiOlsiJ3VzZSBzdHJpY3QnO1xyXG5cclxubW9kdWxlLmV4cG9ydHMgPSBmdW5jdGlvbihDaGFydCkge1xyXG5cclxuXHR2YXIgZGVmYXVsdENvbmZpZyA9IHtcclxuXHRcdGhvdmVyOiB7XHJcblx0XHRcdG1vZGU6ICdzaW5nbGUnXHJcblx0XHR9LFxyXG5cclxuXHRcdHNjYWxlczoge1xyXG5cdFx0XHR4QXhlczogW3tcclxuXHRcdFx0XHR0eXBlOiAnbGluZWFyJywgLy8gc2NhdHRlciBzaG91bGQgbm90IHVzZSBhIGNhdGVnb3J5IGF4aXNcclxuXHRcdFx0XHRwb3NpdGlvbjogJ2JvdHRvbScsXHJcblx0XHRcdFx0aWQ6ICd4LWF4aXMtMScgLy8gbmVlZCBhbiBJRCBzbyBkYXRhc2V0cyBjYW4gcmVmZXJlbmNlIHRoZSBzY2FsZVxyXG5cdFx0XHR9XSxcclxuXHRcdFx0eUF4ZXM6IFt7XHJcblx0XHRcdFx0dHlwZTogJ2xpbmVhcicsXHJcblx0XHRcdFx0cG9zaXRpb246ICdsZWZ0JyxcclxuXHRcdFx0XHRpZDogJ3ktYXhpcy0xJ1xyXG5cdFx0XHR9XVxyXG5cdFx0fSxcclxuXHJcblx0XHR0b29sdGlwczoge1xyXG5cdFx0XHRjYWxsYmFja3M6IHtcclxuXHRcdFx0XHR0aXRsZTogZnVuY3Rpb24oKSB7XHJcblx0XHRcdFx0XHQvLyBUaXRsZSBkb2Vzbid0IG1ha2Ugc2Vuc2UgZm9yIHNjYXR0ZXIgc2luY2Ugd2UgZm9ybWF0IHRoZSBkYXRhIGFzIGEgcG9pbnRcclxuXHRcdFx0XHRcdHJldHVybiAnJztcclxuXHRcdFx0XHR9LFxyXG5cdFx0XHRcdGxhYmVsOiBmdW5jdGlvbih0b29sdGlwSXRlbSkge1xyXG5cdFx0XHRcdFx0cmV0dXJuICcoJyArIHRvb2x0aXBJdGVtLnhMYWJlbCArICcsICcgKyB0b29sdGlwSXRlbS55TGFiZWwgKyAnKSc7XHJcblx0XHRcdFx0fVxyXG5cdFx0XHR9XHJcblx0XHR9XHJcblx0fTtcclxuXHJcblx0Ly8gUmVnaXN0ZXIgdGhlIGRlZmF1bHQgY29uZmlnIGZvciB0aGlzIHR5cGVcclxuXHRDaGFydC5kZWZhdWx0cy5zY2F0dGVyID0gZGVmYXVsdENvbmZpZztcclxuXHJcblx0Ly8gU2NhdHRlciBjaGFydHMgdXNlIGxpbmUgY29udHJvbGxlcnNcclxuXHRDaGFydC5jb250cm9sbGVycy5zY2F0dGVyID0gQ2hhcnQuY29udHJvbGxlcnMubGluZTtcclxuXHJcblx0Q2hhcnQuU2NhdHRlciA9IGZ1bmN0aW9uKGNvbnRleHQsIGNvbmZpZykge1xyXG5cdFx0Y29uZmlnLnR5cGUgPSAnc2NhdHRlcic7XHJcblx0XHRyZXR1cm4gbmV3IENoYXJ0KGNvbnRleHQsIGNvbmZpZyk7XHJcblx0fTtcclxuXHJcbn07XHJcbiJdfQ==

@@ -1,0 +1,52 @@
+<style lang="less">
+.chart-iframe {
+  margin: 10rpx 10rpx;
+  text-align: center;
+}
+</style>
+<template>
+  <view class="chart-iframe">
+    <canvas disable-scroll="true" style="width:{{myCanvasStyle.width}}px; height: {{myCanvasStyle.height}}px;" bindtouchstart="myCanvasTouchStart" bindtouchend="myCanvasTouchEnd" canvas-id="myCanvas"></canvas>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import Com from '../components/com'
+import chartWrap from './canvas/chartWrap'
+import getConfig from './getConfig'
+export default class Logs extends wepy.page {
+  components = {
+    com: Com
+  }
+  config = {}
+  onShow() {
+    var pageThis = this
+    var deviceInfo = {
+      SDKVersion: "1.3.0",
+      brand: "devtools",
+      errMsg: "getSystemInfo:ok",
+      language: "zh_CN",
+      model: "iPhone 6",
+      pixelRatio: 2,
+      platform: "devtools",
+      screenHeight: 667,
+      screenWidth: 375,
+      system: "iOS 10.0.1",
+      version: "6.5.6",
+      windowHeight: 603,
+      windowWidth: 375
+    }
+    console.log('设备信息', deviceInfo)
+    let width = Math.floor(deviceInfo.windowWidth - (deviceInfo.windowWidth / 750) * 10 * 2)//canvas宽度
+    let height = Math.floor(width / 1.6)//这个项目canvas的width/height为1.6
+    let canvasId = 'myCanvas'
+    let canvasConfig = {
+      width: width,
+      height: height,
+      id: canvasId
+    }
+    let config=getConfig(canvasConfig)
+    chartWrap.bind(pageThis)(config)
+  }
+}
+</script>

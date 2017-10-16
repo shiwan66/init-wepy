@@ -1,0 +1,4 @@
+
+  <view class="chart-iframe">
+    <canvas disable-scroll="true" style="width:{{myCanvasStyle.width}}px; height: {{myCanvasStyle.height}}px;" bindtouchstart="myCanvasTouchStart" bindtouchend="myCanvasTouchEnd" canvas-id="myCanvas"/>
+  </view>

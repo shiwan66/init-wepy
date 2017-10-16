@@ -1,0 +1,2 @@
+@import "./../components/com.wxss";
+.chart-iframe{margin:10rpx 10rpx;text-align:center}
